@@ -9,7 +9,7 @@
  * - Edge cases (division by zero, negative numbers, decimals, etc.)
  */
 
-const { add, subtract, multiply, divide } = require('../calculator-lib.js');
+const { add, subtract, multiply, divide, modulo, power, squareRoot } = require('../calculator-lib.js');
 
 describe('Calculator Functions', () => {
 
@@ -223,6 +223,197 @@ describe('Calculator Functions', () => {
       const step2 = multiply(step1, 2);
       const result = divide(step2, 3);
       expect(result).toBe(10);
+    });
+  });
+
+  // ==========================================
+  // MODULO TESTS
+  // ==========================================
+  describe('Modulo (modulo)', () => {
+    test('should calculate modulo: 5 % 2 = 1', () => {
+      expect(modulo(5, 2)).toBe(1);
+    });
+
+    test('should calculate modulo: 10 % 3 = 1', () => {
+      expect(modulo(10, 3)).toBe(1);
+    });
+
+    test('should calculate modulo with zero dividend: 0 % 5 = 0', () => {
+      expect(modulo(0, 5)).toBe(0);
+    });
+
+    test('should calculate modulo with equal numbers: 10 % 10 = 0', () => {
+      expect(modulo(10, 10)).toBe(0);
+    });
+
+    test('should handle negative dividend: -10 % 3 = -1', () => {
+      expect(modulo(-10, 3)).toBe(-1);
+    });
+
+    test('should handle negative divisor: 10 % (-3) = 1', () => {
+      expect(modulo(10, -3)).toBe(1);
+    });
+
+    test('should handle two negative numbers: -10 % (-3) = -1', () => {
+      expect(modulo(-10, -3)).toBe(-1);
+    });
+
+    test('should handle decimal numbers: 10.5 % 3 = 1.5', () => {
+      expect(modulo(10.5, 3)).toBeCloseTo(1.5);
+    });
+
+    test('should throw error for modulo by zero', () => {
+      expect(() => modulo(10, 0)).toThrow('Modulo by zero is not allowed');
+    });
+
+    test('should throw error for negative modulo by zero', () => {
+      expect(() => modulo(-10, 0)).toThrow('Modulo by zero is not allowed');
+    });
+  });
+
+  // ==========================================
+  // POWER/EXPONENTIATION TESTS
+  // ==========================================
+  describe('Power/Exponentiation (power)', () => {
+    test('should calculate power: 2 ^ 3 = 8', () => {
+      expect(power(2, 3)).toBe(8);
+    });
+
+    test('should calculate power: 5 ^ 2 = 25', () => {
+      expect(power(5, 2)).toBe(25);
+    });
+
+    test('should calculate power with zero exponent: 10 ^ 0 = 1', () => {
+      expect(power(10, 0)).toBe(1);
+    });
+
+    test('should calculate power with exponent 1: 10 ^ 1 = 10', () => {
+      expect(power(10, 1)).toBe(10);
+    });
+
+    test('should handle negative exponent: 2 ^ (-2) = 0.25', () => {
+      expect(power(2, -2)).toBe(0.25);
+    });
+
+    test('should handle negative base: (-2) ^ 2 = 4', () => {
+      expect(power(-2, 2)).toBe(4);
+    });
+
+    test('should handle negative base and exponent: (-2) ^ 3 = -8', () => {
+      expect(power(-2, 3)).toBe(-8);
+    });
+
+    test('should handle fractional exponents: 16 ^ 0.5 = 4', () => {
+      expect(power(16, 0.5)).toBe(4);
+    });
+
+    test('should handle large exponents: 2 ^ 10 = 1024', () => {
+      expect(power(2, 10)).toBe(1024);
+    });
+
+    test('should handle decimal base: 1.5 ^ 2 = 2.25', () => {
+      expect(power(1.5, 2)).toBe(2.25);
+    });
+
+    test('should handle zero base with positive exponent: 0 ^ 5 = 0', () => {
+      expect(power(0, 5)).toBe(0);
+    });
+  });
+
+  // ==========================================
+  // SQUARE ROOT TESTS
+  // ==========================================
+  describe('Square Root (squareRoot)', () => {
+    test('should calculate square root: sqrt(16) = 4', () => {
+      expect(squareRoot(16)).toBe(4);
+    });
+
+    test('should calculate square root: sqrt(25) = 5', () => {
+      expect(squareRoot(25)).toBe(5);
+    });
+
+    test('should calculate square root: sqrt(2) ≈ 1.414', () => {
+      expect(squareRoot(2)).toBeCloseTo(1.41421356);
+    });
+
+    test('should handle zero: sqrt(0) = 0', () => {
+      expect(squareRoot(0)).toBe(0);
+    });
+
+    test('should handle one: sqrt(1) = 1', () => {
+      expect(squareRoot(1)).toBe(1);
+    });
+
+    test('should handle decimal numbers: sqrt(0.25) = 0.5', () => {
+      expect(squareRoot(0.25)).toBe(0.5);
+    });
+
+    test('should handle large numbers: sqrt(1000000) = 1000', () => {
+      expect(squareRoot(1000000)).toBe(1000);
+    });
+
+    test('should handle very small numbers: sqrt(0.0001) = 0.01', () => {
+      expect(squareRoot(0.0001)).toBe(0.01);
+    });
+
+    test('should throw error for negative number', () => {
+      expect(() => squareRoot(-4)).toThrow('Square root of negative numbers is not allowed');
+    });
+
+    test('should throw error for negative decimal', () => {
+      expect(() => squareRoot(-0.5)).toThrow('Square root of negative numbers is not allowed');
+    });
+
+    test('should throw error for large negative number', () => {
+      expect(() => squareRoot(-1000)).toThrow('Square root of negative numbers is not allowed');
+    });
+  });
+
+  // ==========================================
+  // EXTENDED OPERATIONS INTEGRATION TESTS
+  // ==========================================
+  describe('Extended Operations - Real-world Examples from Image', () => {
+    test('Example 1: 5 % 2 = 1', () => {
+      expect(modulo(5, 2)).toBe(1);
+    });
+
+    test('Example 2: 2 ^ 3 = 8', () => {
+      expect(power(2, 3)).toBe(8);
+    });
+
+    test('Example 3: sqrt(16) = 4', () => {
+      expect(squareRoot(16)).toBe(4);
+    });
+  });
+
+  // ==========================================
+  // COMBINED EXTENDED OPERATIONS
+  // ==========================================
+  describe('Combined Extended Operations', () => {
+    test('should chain: (2 ^ 3) % 5 = 3', () => {
+      const step1 = power(2, 3);
+      const result = modulo(step1, 5);
+      expect(result).toBe(3);
+    });
+
+    test('should chain: sqrt(16) + (3 ^ 2) = 13', () => {
+      const step1 = squareRoot(16);
+      const step2 = power(3, 2);
+      const result = add(step1, step2);
+      expect(result).toBe(13);
+    });
+
+    test('should chain: sqrt(25) * (10 % 3) = 5', () => {
+      const step1 = squareRoot(25);
+      const step2 = modulo(10, 3);
+      const result = multiply(step1, step2);
+      expect(result).toBe(5);
+    });
+
+    test('should chain: (100 % 7) ^ 2 = 4', () => {
+      const step1 = modulo(100, 7);
+      const result = power(step1, 2);
+      expect(result).toBe(4);
     });
   });
 });

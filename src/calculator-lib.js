@@ -31,5 +31,26 @@ function divide(num1, num2) {
   return num1 / num2;
 }
 
+// Modulo operation - returns the remainder of a divided by b
+function modulo(a, b) {
+  if (b === 0) {
+    throw new Error('Modulo by zero is not allowed');
+  }
+  return a % b;
+}
+
+// Power/Exponentiation operation - returns base raised to the exponent
+function power(base, exponent) {
+  return Math.pow(base, exponent);
+}
+
+// Square root operation - returns the square root of n
+function squareRoot(n) {
+  if (n < 0) {
+    throw new Error('Square root of negative numbers is not allowed');
+  }
+  return Math.sqrt(n);
+}
+
 // Export functions for testing and use
-module.exports = { add, subtract, multiply, divide };
+module.exports = { add, subtract, multiply, divide, modulo, power, squareRoot };
