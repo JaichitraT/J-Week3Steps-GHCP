@@ -1,0 +1,24 @@
+{
+  "name": "j-week3steps-ghcp",
+  "version": "1.0.0",
+  "description": "<img src=\"https://octodex.github.com/images/Professortocat_v2.png\" align=\"right\" height=\"200px\" />",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JaichitraT/J-Week3Steps-GHCP.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JaichitraT/J-Week3Steps-GHCP/issues"
+  },
+  "homepage": "https://github.com/JaichitraT/J-Week3Steps-GHCP#readme",
+  "devDependencies": {
+    "jest": "^30.2.0"
+  }
+}
